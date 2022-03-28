@@ -127,7 +127,7 @@ object CliquesGenerator extends Serializable {
     val outputFile = clArgs.getOptionValue("outputFile")
     val numPartition = clArgs.getOptionValue("numPartition").toInt
 
-    val sparkConf = new SparkConf().setAppName("CliqueGenerator")
+    val sparkConf = new SparkConf().setAppName("CliqueGenerator").setMaster("local")
 
     val sc = new SparkContext(sparkConf)
     val (cliques, cc) = CliquesGenerator.generateInParallel(sc, cliquesCount, maxNodesPerComponent, numPartition)
